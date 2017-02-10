@@ -10,6 +10,7 @@ var port = process.env.PORT || 8000
 var session = require("express-session");
 var RedisStore = require("connect-redis")(session);
 var passport = require("passport");
+var fileUpload = require('express-fileupload');
 var store = new RedisStore({
     url: config.redisStore.url
 });
@@ -27,7 +28,7 @@ app.use(session({
 
 app.use(function(req, res, next){
   if(req.session.passport != undefined){
-      res.cookie('userID', req.session.passport.user)
+      res.cookie('userID', req.session.passport.user);
   }
   next();
 });
@@ -38,6 +39,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'app', 'static')));
+
+app.use(fileUpload());
 
 app.use(passport.initialize());
 app.use(passport.session());

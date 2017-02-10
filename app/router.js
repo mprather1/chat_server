@@ -7,7 +7,8 @@ var Router = Marionette.AppRouter.extend({
     this.controller = new Controller({ app: options.app });
   },
   appRoutes: {
-    'login': 'login'
+    'login': 'login',
+    'new/user': 'userFormView',    
   }
 });
 

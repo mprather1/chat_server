@@ -1,5 +1,6 @@
 var Marionette = require("marionette");
-var LoginView = require("./views/LoginView")
+var LoginView = require("./views/LoginView");
+var UserFormView = require("./views/UserFormView")
 
 var Controller = Marionette.Object.extend({
   
@@ -10,7 +11,10 @@ var Controller = Marionette.Object.extend({
   },
   login: function(){
     this.app.view.showChildView('main', new LoginView())
-  }
+  },
+  userFormView: function(){
+    this.app.view.showChildView('main', new UserFormView());
+  },  
 });
 
 module.exports = Controller;

@@ -30,7 +30,7 @@ function createUser(req, res, next){
     if(req.files || req.files !== undefined){
       file = req.files.upload
       file.mv('./app/static/pictures/' + file.name, function(){
-        res.send('Files were uploaded')
+        console.log("File uploaded...")
       })
     }
     res.status(200)

@@ -40,7 +40,6 @@ function createMessage(req, res, next){
 function updateMessage(req, res, next){
   db.none('update messages set content=$1 where id=$2', [req.body.content, parseInt(req.params.id)])
   .then(function(){
-    console.log('tets')
     res.status(200)
     .json({
       status: 'success',
