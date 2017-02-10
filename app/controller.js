@@ -1,20 +1,32 @@
 var Marionette = require("marionette");
 var LoginView = require("./views/LoginView");
+var User = require("./models/User");
+var UserView = require("./views/UserView")
+var Cookie = require("js-cookie");
 var UserFormView = require("./views/UserFormView")
 
 var Controller = Marionette.Object.extend({
   
   initialize: function(options){
     
-    this.app = options.app;
+    window.app = options.app;
     
   },
   login: function(){
-    this.app.view.showChildView('main', new LoginView())
+    window.app.view.showChildView('main', new LoginView())
   },
   userFormView: function(){
-    this.app.view.showChildView('main', new UserFormView());
-  },  
+    window.app.view.showChildView('main', new UserFormView());
+  }, 
+  homePage: function(){
+    var user = new User({ id: Cookie.get('userID')})
+    user.fetch({
+      success: function(){
+        console.log("Successfully fetched user...")
+        window.app.view.showChildView('main', new UserView({ model: user }))
+      }
+    })
+  }
 });
 
 module.exports = Controller;

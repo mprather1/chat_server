@@ -8,7 +8,8 @@ var Router = Marionette.AppRouter.extend({
   },
   appRoutes: {
     'login': 'login',
-    'new/user': 'userFormView',    
+    'new/user': 'userFormView',
+    'home': 'homePage'
   }
 });
 
