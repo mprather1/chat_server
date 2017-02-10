@@ -1,6 +1,8 @@
 var Marionette = require("marionette");
 var LoginView = require("./views/LoginView");
 var User = require("./models/User");
+var Conversation = require("./models/Conversation")
+var ChatView = require("./views/ChatView");
 var UserView = require("./views/UserView")
 var Cookie = require("js-cookie");
 var UserFormView = require("./views/UserFormView")
@@ -26,7 +28,18 @@ var Controller = Marionette.Object.extend({
         window.app.view.showChildView('main', new UserView({ model: user }))
       }
     })
-  }
+  },
+  getSingleConversation: function(options){
+    var conversation = new Conversation({ id: options })
+    conversation.fetch({
+      success: function(data){
+        console.log("Successfully fetched /conversations/" + data.id)
+      }
+    }).then(function(){
+      window.singleConversationView = new ChatView({ model: conversation })
+      window.app.view.showChildView('main', window.singleConversationView)
+    })
+}
 });
 
 module.exports = Controller;

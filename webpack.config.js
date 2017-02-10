@@ -24,12 +24,17 @@ module.exports = {
   devServer: {
     contentBase: "./app"
   },
+  external:{
+    'socket.io-client':'io'
+  },
   resolve: {
     alias: {
-      "marionette": "backbone.marionette"
+      "marionette": "backbone.marionette",
+      'socket.io-client': path.join( __dirname, 'node_modules', 'socket.io-client', 'dist', 'socket.io.js' )      
     }
   },
   module: {
+    noParse: [ /socket.io-client/ ],
     preLoaders: [
      {
        test: /\.js$/,

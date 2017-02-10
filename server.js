@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
 var bodyParser = require("body-parser");
 var path = require("path");
 var config = require("./_config");
@@ -56,7 +58,14 @@ app.post('/login', passport.authenticate('local', {
 
 app.use('/api', routes);
 
-var server = app.listen(port, function(){
+io.on('connection', function(socket){
+    socket.on("chat message", function(msg){
+      io.emit('chat message', msg);
+      socket.broadcast.emit('play', { sound: '/sounds/ding.mp3' })  
+    });
+});
+
+var server = http.listen(port, function(){
   if(environment === "development"){
     console.log(("Listening on port " + port + "..."))
   }

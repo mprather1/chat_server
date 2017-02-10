@@ -9,6 +9,7 @@ function getAllConversations(req, res, next){
 }
 
 function getSingleConversation(req, res, next){
+  console.log(req.params)
   var conversationID = parseInt(req.params.id);
   db.one('select * from conversations where id = $1', conversationID)
   .then(function(data){
