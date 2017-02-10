@@ -34,8 +34,8 @@ VALUES ('Kill', 'Bill', 'killbill', 'password');
 INSERT INTO users ( first_name, last_name, username, password, admin )
 VALUES ('Mike', 'Prather', 'mprather', 'password', true);
 
-INSERT INTO conversations ( title )
-VALUES ('conversation 1');
+INSERT INTO conversations ( title, _user )
+VALUES ('conversation 1', 3);
 
 
 DROP DATABASE IF EXISTS api_test;
