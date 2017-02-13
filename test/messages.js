@@ -31,7 +31,7 @@ describe('Messages', function(){
   
   before(function(done){
     db.none('insert into users(first_name, last_name, username, password, avatar)' + 'values($1, $2, $3, $4, $5)', ['first_name', 'last_name', 'username', 'password', 'avatar']);    
-    db.none('insert into conversations(title, _user)' + 'values($1, $2)', ['test', 1]);
+    db.none('insert into conversations(title, _user)' + 'values($1,  ARRAY[$2])', ['test', 1]);
     done();
   });
   

@@ -60,7 +60,7 @@ describe('Conversations', function() {
       expect(res).to.be.json;
       expect(res.body[0]).to.have.property('id');
       expect(res.body[0]).to.have.property('_user');
-      expect(res.body[0]._user).to.equal(users[0].id)
+      expect(res.body[0]._user).to.include(users[0].id)
       done();        
     })
   });
@@ -97,7 +97,7 @@ describe('Conversations', function() {
         expect(res.body).to.have.property('_user')
         expect(res.body).to.have.property('title');
         expect(res.body.title).to.equal('newTitle');
-        expect(res.body._user).to.equal(users[0].id);
+        expect(res.body._user).to.include(users[0].id);
         done();
       });
     });

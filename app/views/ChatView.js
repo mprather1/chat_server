@@ -27,8 +27,6 @@ var ChatWindowView = Backbone.Marionette.View.extend({
       sound.play();
     });
     socket.on('chat message', function(msg){
-      console.log(cid)
-      console.log(msg)
       if(cid === msg.conversationID){
               messages.add(msg);
       window.scrollTo(0, document.body.scrollHeight);

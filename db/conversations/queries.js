@@ -1,17 +1,14 @@
 var db = require("../init");
 
 function getAllConversations(req, res, next){
-  console.log(req.body)
   db.any('select * from conversations where $1 = any (_user)', req.params.userID)
   .then(function(data){
-    console.log(data)
     res.status(200)
       .json(data);
   });
 }
 
 function getSingleConversation(req, res, next){
-  console.log(req.params)
   var conversationID = parseInt(req.params.id);
   db.one('select * from conversations where id = $1', conversationID)
   .then(function(data){
@@ -24,7 +21,7 @@ function getSingleConversation(req, res, next){
 }
 
 function createConversation(req, res, next){
-  db.none('insert into conversations( title, _user )' + 'values( $1, $2 )', [req.body.title, req.params.userID])
+  db.none('insert into conversations( title, _user )' + 'values( $1, ARRAY[$2] )', [req.body.title, parseInt(req.params.userID)])
   .then(function(){
     res.status(200)
     .json({
