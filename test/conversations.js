@@ -43,7 +43,7 @@ describe('Conversations', function() {
   it('should add a SINGLE conversation on users/:userID/conversation POST', function(done){
     chai.request(server)
     .post('/api/users/' + users[0].id + '/conversations')
-    .send({ 'title': 'title', '_user': users[0].id })
+    .send({ 'title': 'title', '_user': users[0].id, "participant": 2 })
     .end(function(err, res){
       expect(res).to.have.status(200)
       expect(res.body).to.have.status('success')

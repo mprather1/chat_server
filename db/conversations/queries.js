@@ -21,7 +21,7 @@ function getSingleConversation(req, res, next){
 }
 
 function createConversation(req, res, next){
-  db.none('insert into conversations( title, _user )' + 'values( $1, ARRAY[$2] )', [req.body.title, parseInt(req.params.userID)])
+  db.none('insert into conversations( title, _user )' + 'values( $1, ARRAY[$2, $3] )', [req.body.title, parseInt(req.params.userID), req.body.participant])
   .then(function(){
     res.status(200)
     .json({
