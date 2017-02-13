@@ -10,6 +10,7 @@ var ChatWindowView = Backbone.Marionette.View.extend({
   initialize: function(){
     var cookie = Cookie.get('userID');
     var author = new User({ id: cookie});
+    var cid = this.model.get('id')
     author.fetch({
       success: function(){
         console.log("Successfully fetched user...");
@@ -26,8 +27,13 @@ var ChatWindowView = Backbone.Marionette.View.extend({
       sound.play();
     });
     socket.on('chat message', function(msg){
-      messages.add(msg);
+      console.log(cid)
+      console.log(msg)
+      if(cid === msg.conversationID){
+              messages.add(msg);
       window.scrollTo(0, document.body.scrollHeight);
+      }
+
     });
     this.messages = messages;
     this.author = author;

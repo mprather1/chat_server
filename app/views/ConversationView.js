@@ -6,6 +6,11 @@ var ConversationView = Backbone.Marionette.View.extend({
       "title": this.model.get('title'),
       "_user": this.model.get('_user')
     }
+  },
+  tagName: 'li',
+  onRender: function(){
+    console.log('conversation view')
+    console.log(this)
   }
 });
 

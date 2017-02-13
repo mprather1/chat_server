@@ -10,7 +10,8 @@ CREATE TABLE users (
     username VARCHAR,
     password VARCHAR,
     avatar VARCHAR,
-    admin BOOLEAN DEFAULT false
+    admin BOOLEAN DEFAULT false,
+    _conversation INTEGER
 );
 
 CREATE TABLE messages (
@@ -25,7 +26,7 @@ CREATE TABLE messages (
 CREATE TABLE conversations (
   ID SERIAL PRIMARY KEY,
   title VARCHAR,
-  _user INTEGER
+  _user INTEGER ARRAY
 );
   
 INSERT INTO users ( first_name, last_name, username, password )
@@ -35,7 +36,20 @@ INSERT INTO users ( first_name, last_name, username, password, admin )
 VALUES ('Mike', 'Prather', 'mprather', 'password', true);
 
 INSERT INTO conversations ( title, _user )
-VALUES ('conversation 1', 3);
+VALUES ('conversation2', ARRAY[1, 2]);
+
+INSERT INTO conversations ( title, _user )
+VALUES ('conversation3', ARRAY[1, 2]);
+
+INSERT INTO conversations ( title, _user )
+VALUES ('conversation4', ARRAY[1, 2]);
+
+
+INSERT INTO conversations ( title, _user )
+VALUES ('conversation5', ARRAY[1, 2]);
+
+INSERT INTO conversations ( title, _user )
+VALUES ('conversation6', ARRAY[1, 2]);
 
 
 DROP DATABASE IF EXISTS api_test;
@@ -50,7 +64,8 @@ CREATE TABLE users (
     username VARCHAR,
     password VARCHAR,
     avatar VARCHAR,
-    admin BOOLEAN DEFAULT false
+    admin BOOLEAN DEFAULT false,
+    _conversation INTEGER
 );
 
 CREATE TABLE messages (
@@ -65,7 +80,7 @@ CREATE TABLE messages (
 CREATE TABLE conversations (
   ID SERIAL PRIMARY KEY,
   title VARCHAR,
-  _user INTEGER
+  _user INTEGER ARRAY
 );
 
 DROP DATABASE IF EXISTS api_production;
@@ -80,7 +95,8 @@ CREATE TABLE users (
     username VARCHAR,
     password VARCHAR,
     avatar VARCHAR,
-    admin BOOLEAN DEFAULT false
+    admin BOOLEAN DEFAULT false,
+    _conversation INTEGER
 );
 
 CREATE TABLE messages (

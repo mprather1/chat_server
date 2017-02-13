@@ -5,10 +5,12 @@ var RootView = Backbone.Marionette.View.extend({
   template: require("../templates/root-view-template.html"),
   regions: {
     header: {
-      el: "#header-view"
+      el: "#header-view",
+      replaceElement: true
     },
     main: {
-      el: "#main-view"
+      el: "#main-view", 
+      replaceElement: true
     }
   },
   initialize: function(){

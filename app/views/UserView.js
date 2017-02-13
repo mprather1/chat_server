@@ -5,7 +5,8 @@ var UserView = Backbone.Marionette.View.extend({
   template: require("../templates/user-view-template.html"),
   regions: {
     conversations: {
-      el: '#conversations-view'
+      el: '#conversations-view',
+      replaceElement: true
     }
   },
   initialize: function(){

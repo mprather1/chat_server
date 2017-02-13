@@ -60,8 +60,9 @@ app.use('/api', routes);
 
 io.on('connection', function(socket){
     socket.on("chat message", function(msg){
+      console.log(msg)
       io.emit('chat message', msg);
-      socket.broadcast.emit('play', { sound: '/sounds/ding.mp3' })  
+      socket.broadcast.emit('play', { sound: '/sounds/ding.mp3' }); 
     });
 });
 

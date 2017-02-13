@@ -1,8 +1,10 @@
 var db = require("../init");
 
 function getAllConversations(req, res, next){
-  db.any('select * from conversations where _user = $1', req.params.userID)
+  console.log(req.body)
+  db.any('select * from conversations where $1 = any (_user)', req.params.userID)
   .then(function(data){
+    console.log(data)
     res.status(200)
       .json(data);
   });
